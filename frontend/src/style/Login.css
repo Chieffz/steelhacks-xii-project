@@ -1,0 +1,157 @@
+/* Make the page fill the viewport so the background can cover it */
+html,
+body,
+#root {
+  height: 100%;
+}
+body {
+  margin: 0;
+}
+
+/* Full-screen blue gradient background */
+
+.login-wrapper {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+
+  /* 🔑 Make it fill the whole screen */
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100vw;      /* full width */
+  height: 100vh;     /* full height */
+
+  /* Same gradient you already like */
+  background: linear-gradient(135deg, #e0f0ff, #cce4ff);
+
+  padding: 1rem;
+}
+
+
+/* White card stays the same */
+.login-box {
+  background: white;
+  padding: 2rem 2.5rem;
+  border-radius: 20px;
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.15);
+  width: 100%;
+  max-width: 380px;
+  text-align: center;
+}
+
+/* Keep your existing .login-form, .login-title, .login-container, .login-button rules */
+
+/* Title */
+.login-title {
+  font-size: 1.8rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: #333;
+}
+
+/* Form */
+.login-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1rem;
+}
+
+/* Container for each input */
+.login-container label {
+  display: flex;
+  flex-direction: column;
+  text-align: left;
+  font-size: 0.95rem;
+  color: #444;
+  gap: 0.3rem;
+}
+
+.login-container input {
+  padding: 0.75rem;
+  border: 1px solid #ccc;
+  border-radius: 8px;
+  font-size: 1rem;
+  transition: border 0.2s, box-shadow 0.2s;
+}
+
+.login-container input:focus {
+  border-color: #4a90e2;
+  box-shadow: 0 0 6px rgba(74, 144, 226, 0.4);
+  outline: none;
+}
+
+/* Button */
+.login-form button[type="submit"] {
+  margin-top: 1rem;
+  padding: 0.9rem;
+  background: #4a90e2;
+  color: white;
+  font-size: 1rem;
+  font-weight: 600;
+  border: none;
+  border-radius: 8px;
+  cursor: pointer;
+  transition: background 0.2s ease-in-out;
+}
+
+.login-button:hover {
+  background: #357ab8;
+}
+
+/* Buttons/inputs small quality of life */
+.login-button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Snackbar */
+.snackbar {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  min-width: 280px;
+  max-width: 90vw;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #1f2937; /* default dark */
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  animation: snack-in 160ms ease-out forwards;
+  font-size: 0.95rem;
+}
+
+@keyframes snack-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Variants */
+.snackbar--success { background: #065f46; }  /* teal/green */
+.snackbar--error { background: #7f1d1d; }    /* dark red */
+.snackbar--info { background: #1f2937; }     /* dark gray */
+
+/* Close button */
+.snackbar-close {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.snackbar-close:hover { opacity: 1; }
+
+/* Input label quick tweak */
+.field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

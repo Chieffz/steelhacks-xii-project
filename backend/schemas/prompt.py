@@ -7,6 +7,7 @@ class Form_Submission(BaseModel):
     Age: int
     Sex: Literal["Male", "Female"]
     Reason_For_Visit: str
+    Injury_Type: str
     ICD10_Code: str
     Treatment: str
-    Outcome: Literal["Admitted", "Outpatient", "ICU", "Discharged"]
+    Outcome: str

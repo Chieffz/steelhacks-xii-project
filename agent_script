@@ -42,16 +42,25 @@ if not patient_info:
     print(f"Patient '{patient_name}' not found in records.")
     exit(1)
 
-# Build a detailed prompt for Vogent using patient info
+# Build a detailed prompt for Vogent using all patient info
 agent_prompt = (
-    f"Your name is Sarah from ABC Medical Group. You are calling the insurance company about a prior authorization for patient {patient_info['Name']}, age {patient_info['Age']}, ICD-10 code {patient_info['ICD10_Code']}, for treatment {patient_info['Treatment']}.\n\n"
-    "Your goal is to:\n"
-    "- Provide the insurer with all the necessary patient and treatment information.\n"
-    "- Ask for prior authorization approval.\n"
-    "- Record the approval number or note if the request is denied.\n\n"
-    "If asked for details, you MUST give the full information from the variables.\n"
+    f"You are Sarah from ABC Medical Group. You are calling the insurance company for a prior authorization regarding the following patient:\n"
+    f"- Name: {patient_info['Name']}\n"
+    f"- Patient ID: {patient_info['Patient_ID']}\n"
+    f"- Age: {patient_info['Age']}\n"
+    f"- Sex: {patient_info['Sex']}\n"
+    f"- Reason for Visit: {patient_info['Reason_For_Visit']}\n"
+    f"- Injury/Diagnosis: {patient_info['Injury_Type']}\n"
+    f"- ICD-10 Code: {patient_info['ICD10_Code']}\n"
+    f"- Treatment: {patient_info['Treatment']}\n"
+    f"- Outcome: {patient_info['Outcome']}\n\n"
+    "Your objectives are:\n"
+    "1. Provide the insurer with all patient and treatment details above.\n"
+    "2. Request prior authorization approval.\n"
+    "3. Record the approval number or note if the request is denied.\n\n"
+    "If asked for details, always give the full information from the variables.\n"
     "Do not end the call until you have the authorization status.\n"
-    "At the end of the call, say “thank you” and hang up <|hangup|>."
+    "At the end of the call, say 'thank you' and hang up <|hangup|>."
 )
 
 # Build call_agent_input using patient info and prompt

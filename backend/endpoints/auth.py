@@ -9,10 +9,6 @@ router = APIRouter()
 async def root():
     return {"Auth Service: " : "Running"}
 
-@router.post("/login")
-async def login(user: user_schema.User):
-    return auth_service.firebase_login(user)
-
-@router.post("register")
-async def register(new_user: user_schema.RegisterUser):
-    return auth_service.firebase_register(new_user)
+@router.post("/verify/{token}")
+def verify_token(token):
+    return auth_service.firebase_verification(token) == True

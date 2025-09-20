@@ -1,14 +1,17 @@
 from typing import Union
 
-from fastapi import FastAPI
+from fastapi import FastAPI, Depends
+from fastapi.security import HTTPAuthorizationCredentials, HTTPBearer
 
-from .endpoints import form_response, auth
+from .endpoints import form, auth
 
 app = FastAPI()
+security = HTTPBearer()
 
-app.include_router(form_response.router,
+app.include_router(form.router,
                    prefix="/form",
-                   tags=["frontend form"])
+                   tags=["frontend form"],
+                   dependencies=[Depends(security)])
 app.include_router(auth.router,
                    prefix="/auth",
                    tags=["auth"])

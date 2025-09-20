@@ -1,0 +1,57 @@
+[
+    {
+        "Patient_ID": "P001",
+        "Name": "John Smith",
+        "Age": 45,
+        "Sex": "Male",
+        "Reason_For_Visit": "Motor Vehicle Collision",
+        "Injury_Type": "Blunt abdominal trauma, liver laceration",
+        "ICD10_Code": "S36.1",
+        "Treatment": "CT scan, surgical repair of liver",
+        "Outcome": "Admitted, discharged after 5 days"
+    },
+    {
+        "Patient_ID": "P002",
+        "Name": "Emily Johnson",
+        "Age": 22,
+        "Sex": "Female",
+        "Reason_For_Visit": "Slip & Fall from ladder (~10 ft)",
+        "Injury_Type": "Upper limb fracture (radius), closed",
+        "ICD10_Code": "S52.5",
+        "Treatment": "Casting, pain management",
+        "Outcome": "Outpatient follow-up"
+    },
+    {
+        "Patient_ID": "P003",
+        "Name": "Michael Brown",
+        "Age": 67,
+        "Sex": "Male",
+        "Reason_For_Visit": "Knife stab wound",
+        "Injury_Type": "Penetrating chest with pneumothorax",
+        "ICD10_Code": "S27.3",
+        "Treatment": "Chest tube insertion, observation",
+        "Outcome": "ICU stay, discharged after 7 days"
+    },
+    {
+        "Patient_ID": "P004",
+        "Name": "Sophia Davis",
+        "Age": 34,
+        "Sex": "Female",
+        "Reason_For_Visit": "Sports injury (soccer collision)",
+        "Injury_Type": "Concussion, mild traumatic brain injury",
+        "ICD10_Code": "S06.0",
+        "Treatment": "Observation, neuro check, rest",
+        "Outcome": "Discharged same day with follow-up"
+    },
+    {
+        "Patient_ID": "P005",
+        "Name": "William Garcia",
+        "Age": 52,
+        "Sex": "Male",
+        "Reason_For_Visit": "Workplace accident (falling object)",
+        "Injury_Type": "Fractured clavicle",
+        "ICD10_Code": "S42.0",
+        "Treatment": "Sling immobilization, pain management",
+        "Outcome": "Discharged, follow-up in 2 weeks"
+    }
+]

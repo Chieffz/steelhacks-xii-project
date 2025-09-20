@@ -98,3 +98,60 @@ body {
 .login-button:hover {
   background: #357ab8;
 }
+
+/* Buttons/inputs small quality of life */
+.login-button[disabled] {
+  opacity: 0.7;
+  cursor: not-allowed;
+}
+
+/* Snackbar */
+.snackbar {
+  position: fixed;
+  left: 50%;
+  bottom: 24px;
+  transform: translateX(-50%) translateY(20px);
+  min-width: 280px;
+  max-width: 90vw;
+  padding: 12px 16px;
+  border-radius: 8px;
+  background: #1f2937; /* default dark */
+  color: #fff;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.2);
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  z-index: 1000;
+  animation: snack-in 160ms ease-out forwards;
+  font-size: 0.95rem;
+}
+
+@keyframes snack-in {
+  from { opacity: 0; transform: translateX(-50%) translateY(20px); }
+  to { opacity: 1; transform: translateX(-50%) translateY(0); }
+}
+
+/* Variants */
+.snackbar--success { background: #065f46; }  /* teal/green */
+.snackbar--error { background: #7f1d1d; }    /* dark red */
+.snackbar--info { background: #1f2937; }     /* dark gray */
+
+/* Close button */
+.snackbar-close {
+  margin-left: auto;
+  background: transparent;
+  border: none;
+  color: inherit;
+  font-size: 18px;
+  line-height: 1;
+  cursor: pointer;
+  opacity: 0.9;
+}
+.snackbar-close:hover { opacity: 1; }
+
+/* Input label quick tweak */
+.field-label {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+}

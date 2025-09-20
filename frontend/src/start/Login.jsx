@@ -114,20 +114,7 @@ export default function Login() {
       setLoading(false);
     }
   };
-
-  const handleRegister = async () => {
-    if (!validateInputs() || loading) return;
-    setLoading(true);
-    try {
-      const res = await register(email, password);
-      showSnack(`Account created for ${res.user.email}`, "success");
-    } catch (err) {
-      showSnack(mapAuthError(err), "error");
-    } finally {
-      setLoading(false);
-    }
-  };
-
+  
   const handleLogout = async () => {
     if (loading) return;
     setLoading(true);
@@ -182,16 +169,6 @@ export default function Login() {
               >
                 {loading ? "Signing in..." : "Login"}
               </button>
-
-              {/* Optional: inline register action */}
-              {/* <button
-                type="button"
-                className="login-button secondary"
-                onClick={handleRegister}
-                disabled={loading}
-              >
-                {loading ? "Creating account..." : "Register"}
-              </button> */}
             </form>
           </>
         )}

@@ -3,12 +3,12 @@ import "../style/Login.css";
 import { login, register, logout } from "../firebase/FirebaseServices.js";
 import { auth } from "../firebase/firebase.js";
 import { onAuthStateChanged } from "firebase/auth";
+import Cookies from "js-cookie";
 
-/* ---- Small helper: map Firebase error codes to friendly copy ---- */
+/* ---- Map Firebase errors to friendly messages ---- */
 function mapAuthError(err) {
   const code = err?.code || "";
 
-  // Unify wrong creds into one safe message
   if (
     code === "auth/invalid-credential" ||
     code === "auth/invalid-login-credentials" ||
@@ -36,9 +36,8 @@ function mapAuthError(err) {
   }
 }
 
-/* ---- Snackbar component (no libs) ---- */
+/* ---- Snackbar ---- */
 function Snackbar({ snack, onClose }) {
-  // Auto-hide after 4s
   useEffect(() => {
     if (!snack) return;
     const t = setTimeout(onClose, 4000);
@@ -69,21 +68,21 @@ export default function Login() {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(false);
 
-  // simple snackbar state: { message, variant }
   const [snack, setSnack] = useState(null);
   const showSnack = (message, variant = "info") =>
     setSnack({ message, variant, id: Date.now() });
   const hideSnack = () => setSnack(null);
 
-  // Track login state
+  // Track login state + token in cookie
   useEffect(() => {
-    const unsubscribe = onAuthStateChanged(auth, (currentUser) => {
+    const unsubscribe = onAuthStateChanged(auth, async (currentUser) => {
       setUser(currentUser);
       if (currentUser) {
+        const token = await currentUser.getIdToken();
+        Cookies.set("idToken", token, { secure: true, sameSite: "strict" }); // 🔑 save in cookie
         showSnack(`Signed in as ${currentUser.email}`, "success");
       } else {
-        // Gentle info only if user previously signed in
-        // showSnack("You are signed out", "info");
+        Cookies.remove("idToken");
       }
     });
     return unsubscribe;
@@ -107,6 +106,8 @@ export default function Login() {
     setLoading(true);
     try {
       const res = await login(email, password);
+      const token = await res.user.getIdToken();
+      Cookies.set("idToken", token, { secure: true, sameSite: "strict" }); // 🔑 save cookie
       showSnack(`Welcome back, ${res.user.email}`, "success");
     } catch (err) {
       showSnack(mapAuthError(err), "error");
@@ -114,17 +115,45 @@ export default function Login() {
       setLoading(false);
     }
   };
-  
+
   const handleLogout = async () => {
     if (loading) return;
     setLoading(true);
     try {
       await logout();
+      Cookies.remove("idToken"); // 🔑 clear cookie
       showSnack("You have been signed out.", "success");
     } catch (err) {
       showSnack(mapAuthError(err), "error");
     } finally {
       setLoading(false);
+    }
+  };
+
+  // Example: API submit using token from cookie
+  const handleSubmit = async () => {
+    const token = Cookies.get("idToken"); // 🔑 read cookie
+    if (!token) {
+      showSnack("You are not authenticated.", "error");
+      return;
+    }
+
+    try {
+      const payload = { example: "data" };
+      const res = await fetch("https://your-api.com/endpoint", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          "Authorization": `Bearer ${token}`,
+        },
+        body: JSON.stringify(payload),
+      });
+
+      const data = await res.json();
+      console.log("API response:", data);
+      showSnack("Data submitted successfully!", "success");
+    } catch (err) {
+      showSnack("Failed to submit data.", "error");
     }
   };
 
@@ -141,6 +170,11 @@ export default function Login() {
               aria-busy={loading ? "true" : "false"}
             >
               {loading ? "Signing out..." : "Logout"}
+            </button>
+
+            {/* Example submit button */}
+            <button onClick={handleSubmit} className="login-button">
+              Submit to API
             </button>
           </>
         ) : (
@@ -174,7 +208,6 @@ export default function Login() {
         )}
       </div>
 
-      {/* Snackbar lives at page level so it floats over everything */}
       <Snackbar snack={snack} onClose={hideSnack} />
     </LoginBackground>
   );

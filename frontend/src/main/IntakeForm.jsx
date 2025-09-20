@@ -1,6 +1,7 @@
 import React, { useState } from "react";
 import "../style/Intake.css";
-import { logout } from "../firebase/FirebaseServices"; // ✅ import logout
+import { logout } from "../firebase/FirebaseServices"; 
+import Cookies from "js-cookie"; // ✅ to read Firebase token
 
 const IntakeForm = () => {
   const [formData, setFormData] = useState({
@@ -25,8 +26,14 @@ const IntakeForm = () => {
 
   const handleSubmit = (e) => {
     e.preventDefault();
+
+    // ✅ Grab Firebase token from cookie
+    const token = Cookies.get("idToken");
+
     console.log("Form Submitted:", formData);
-    alert("Intake form submitted! Check the console for data.");
+    console.log("Firebase Token:", token); // ✅ test token
+
+    alert("Intake form submitted! Check the console for form data and token.");
   };
 
   const resetForm = () => {
@@ -46,6 +53,7 @@ const IntakeForm = () => {
   const handleLogout = async () => {
     try {
       await logout();
+      Cookies.remove("idToken"); // ✅ also clear token when logging out
       alert("You have been signed out.");
     } catch (err) {
       alert("Error signing out: " + err.message);

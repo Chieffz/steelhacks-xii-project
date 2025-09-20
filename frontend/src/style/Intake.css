@@ -1,1 +1,155 @@
-/* TODO: Write in intake form styling here */
+/* IntakeForm.css */
+@import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600&display=swap');
+
+/* Container Styles */
+.intake-form-container {
+  font-family: 'Inter', sans-serif;
+  max-width: 800px;
+  margin: 2rem auto;
+  padding: 1rem 2rem 2rem 2rem;
+  background-color: white;
+  border-radius: 12px;
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.08);
+  color: #333;
+}
+
+.intake-form-container h1 {
+  margin-top: 0;
+  color: #4361ee;
+  font-weight: 600;
+}
+
+.intake-form-container .form-subtitle {
+  color: #666;
+  margin-bottom: 1.5rem;
+}
+
+/* Form Styles */
+.intake-form {
+  display: flex;
+  flex-direction: column;
+  gap: 1.5rem;
+}
+
+.form-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+.form-row label {
+  font-weight: 500;
+  font-size: 0.9rem;
+}
+
+.form-row input,
+.form-row select,
+.form-row textarea {
+  padding: 0.75rem;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  font-family: inherit;
+  font-size: 1rem;
+  transition: all 0.2s ease;
+}
+
+.form-row input:focus,
+.form-row select:focus,
+.form-row textarea:focus {
+  outline: none;
+  border-color: #4361ee;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.form-row input::placeholder,
+.form-row select::placeholder,
+.form-row textarea::placeholder {
+  color: #aaa;
+}
+
+.form-row textarea {
+  resize: vertical;
+  min-height: 80px;
+}
+
+/* Grouped row for side-by-side fields (Name, Age, Sex) */
+.form-row-group {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 1rem;
+}
+
+.form-row-group .form-group {
+  flex: 1;
+  min-width: 120px;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+
+@media (max-width: 600px) {
+  .form-row-group {
+    flex-direction: column;
+    gap: 1rem;
+  }
+  
+  .form-row-group .form-group {
+    min-width: 100%;
+  }
+}
+
+/* Button Styles */
+.form-actions {
+  display: flex;
+  justify-content: flex-end;
+  gap: 1rem;
+  margin-top: 1rem;
+  padding-top: 1rem;
+  border-top: 1px solid #ddd;
+}
+
+.form-actions button {
+  padding: 0.75rem 1.5rem;
+  border: none;
+  border-radius: 8px;
+  font-weight: 500;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.form-actions button:focus {
+  outline: none;
+  border-color: #4361ee;
+  box-shadow: 0 0 0 3px rgba(67, 97, 238, 0.2);
+}
+
+.form-actions .btn-primary {
+  background-color: #4361ee;
+  color: white;
+}
+
+.form-actions .btn-primary:hover {
+  background-color: #3a56d4;
+}
+
+.form-actions .btn-secondary {
+  background-color: #e9ecef;
+  color: #333;
+}
+
+.form-actions .btn-secondary:hover {
+  background-color: #dee2e6;
+}
+
+/* Basic Validation Styling */
+input:required,
+select:required,
+textarea:required {
+  border-left: 3px solid transparent;
+}
+
+input:invalid:focus,
+select:invalid:focus,
+textarea:invalid:focus {
+  border-color: #e63946;
+}

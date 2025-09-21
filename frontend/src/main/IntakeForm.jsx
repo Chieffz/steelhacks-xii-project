@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import "../style/Intake.css";
-import { logout } from "../firebase/FirebaseServices"; 
+import { logout } from "../firebase/FirebaseServices";
 import Cookies from "js-cookie"; // ✅ to read Firebase token
 
 const IntakeForm = () => {
@@ -32,11 +32,12 @@ const IntakeForm = () => {
 
     fetch("http://127.0.0.1:8080/form/", {
       method: "POST",
-      body: formData,
+      body: JSON.stringify(formData),
       headers: {
-        "Authorization": "Bearer " + token,
-      }
-    })
+        "Content-Type": "application/json",
+        Authorization: "Bearer " + token,
+      },
+    });
   };
 
   const resetForm = () => {

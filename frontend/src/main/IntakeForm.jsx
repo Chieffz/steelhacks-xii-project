@@ -30,10 +30,13 @@ const IntakeForm = () => {
     // ✅ Grab Firebase token from cookie
     const token = Cookies.get("idToken");
 
-    console.log("Form Submitted:", formData);
-    console.log("Firebase Token:", token); // ✅ test token
-
-    alert("Intake form submitted!");
+    fetch("http://127.0.0.1:8080/form/", {
+      method: "POST",
+      body: formData,
+      headers: {
+        "Authorization": "Bearer " + token,
+      }
+    })
   };
 
   const resetForm = () => {

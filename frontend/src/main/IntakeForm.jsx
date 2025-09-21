@@ -5,15 +5,15 @@ import Cookies from "js-cookie"; // ✅ to read Firebase token
 
 const IntakeForm = () => {
   const [formData, setFormData] = useState({
-    patientId: "",
-    name: "",
-    age: "",
-    sex: "",
-    reasonForVisit: "",
-    injuryType: "",
-    icd10Code: "",
-    treatment: "",
-    outcome: "",
+    Patient_ID: "",
+    Name: "",
+    Age: "",
+    Sex: "",
+    Reason_For_Visit: "",
+    Injury_Type: "",
+    ICD10_Code: "",
+    Treatment: "",
+    Outcome: "",
   });
 
   const handleInputChange = (e) => {
@@ -33,20 +33,20 @@ const IntakeForm = () => {
     console.log("Form Submitted:", formData);
     console.log("Firebase Token:", token); // ✅ test token
 
-    alert("Intake form submitted! Check the console for form data and token.");
+    alert("Intake form submitted!");
   };
 
   const resetForm = () => {
     setFormData({
-      patientId: "",
-      name: "",
-      age: "",
-      sex: "",
-      reasonForVisit: "",
-      injuryType: "",
-      icd10Code: "",
-      treatment: "",
-      outcome: "",
+      Patient_ID: "",
+      Name: "",
+      Age: "",
+      Sex: "",
+      Reason_For_Visit: "",
+      Injury_Type: "",
+      ICD10_Code: "",
+      Treatment: "",
+      Outcome: "",
     });
   };
 
@@ -75,12 +75,12 @@ const IntakeForm = () => {
         <form onSubmit={handleSubmit} className="intake-form">
           {/* Patient ID */}
           <div className="form-row">
-            <label htmlFor="patientId">Patient ID *</label>
+            <label htmlFor="Patient_ID">Patient ID *</label>
             <input
               type="text"
-              id="patientId"
-              name="patientId"
-              value={formData.patientId}
+              id="Patient_ID"
+              name="Patient_ID"
+              value={formData.Patient_ID}
               onChange={handleInputChange}
               required
               placeholder="Enter unique patient identifier"
@@ -90,24 +90,24 @@ const IntakeForm = () => {
           {/* Name & Age & Sex */}
           <div className="form-row form-row-group">
             <div className="form-group">
-              <label htmlFor="name">Full Name *</label>
+              <label htmlFor="Name">Full Name *</label>
               <input
                 type="text"
-                id="name"
-                name="name"
-                value={formData.name}
+                id="Name"
+                name="Name"
+                value={formData.Name}
                 onChange={handleInputChange}
                 required
                 placeholder="Patient's full name"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="age">Age *</label>
+              <label htmlFor="Age">Age *</label>
               <input
                 type="number"
-                id="age"
-                name="age"
-                value={formData.age}
+                id="Age"
+                name="Age"
+                value={formData.Age}
                 onChange={handleInputChange}
                 required
                 min="0"
@@ -115,29 +115,28 @@ const IntakeForm = () => {
               />
             </div>
             <div className="form-group">
-              <label htmlFor="sex">Sex *</label>
+              <label htmlFor="Sex">Sex *</label>
               <select
-                id="sex"
-                name="sex"
-                value={formData.sex}
+                id="Sex"
+                name="Sex"
+                value={formData.Sex}
                 onChange={handleInputChange}
                 required
               >
                 <option value="">Select...</option>
                 <option value="Male">Male</option>
                 <option value="Female">Female</option>
-                <option value="Other">Other</option>
               </select>
             </div>
           </div>
 
           {/* Reason for Visit */}
           <div className="form-row">
-            <label htmlFor="reasonForVisit">Reason for Visit *</label>
+            <label htmlFor="Reason_For_Visit">Reason for Visit *</label>
             <textarea
-              id="reasonForVisit"
-              name="reasonForVisit"
-              value={formData.reasonForVisit}
+              id="Reason_For_Visit"
+              name="Reason_For_Visit"
+              value={formData.Reason_For_Visit}
               onChange={handleInputChange}
               required
               rows={3}
@@ -148,23 +147,23 @@ const IntakeForm = () => {
           {/* Injury Type & ICD-10 Code */}
           <div className="form-row form-row-group">
             <div className="form-group">
-              <label htmlFor="injuryType">Injury/Condition Type</label>
+              <label htmlFor="Injury_Type">Injury/Condition Type</label>
               <input
                 type="text"
-                id="injuryType"
-                name="injuryType"
-                value={formData.injuryType}
+                id="Injury_Type"
+                name="Injury_Type"
+                value={formData.Injury_Type}
                 onChange={handleInputChange}
                 placeholder="e.g., Fracture, Sprain, Hypertension"
               />
             </div>
             <div className="form-group">
-              <label htmlFor="icd10Code">ICD-10 Code</label>
+              <label htmlFor="ICD10_Code">ICD-10 Code</label>
               <input
                 type="text"
-                id="icd10Code"
-                name="icd10Code"
-                value={formData.icd10Code}
+                id="ICD10_Code"
+                name="ICD10_Code"
+                value={formData.ICD10_Code}
                 onChange={handleInputChange}
                 placeholder="e.g., S52.501A"
               />
@@ -173,11 +172,11 @@ const IntakeForm = () => {
 
           {/* Treatment */}
           <div className="form-row">
-            <label htmlFor="treatment">Proposed Treatment *</label>
+            <label htmlFor="Treatment">Proposed Treatment *</label>
             <textarea
-              id="treatment"
-              name="treatment"
-              value={formData.treatment}
+              id="Treatment"
+              name="Treatment"
+              value={formData.Treatment}
               onChange={handleInputChange}
               required
               rows={3}
@@ -187,11 +186,11 @@ const IntakeForm = () => {
 
           {/* Expected Outcome */}
           <div className="form-row">
-            <label htmlFor="outcome">Expected Outcome</label>
+            <label htmlFor="Outcome">Expected Outcome</label>
             <textarea
-              id="outcome"
-              name="outcome"
-              value={formData.outcome}
+              id="Outcome"
+              name="Outcome"
+              value={formData.Outcome}
               onChange={handleInputChange}
               rows={3}
               placeholder="Describe the expected clinical outcome or improvement for the patient..."

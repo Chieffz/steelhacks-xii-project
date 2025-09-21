@@ -51,5 +51,4 @@ Our AI agent which perform a phone call, trained through prompted engineering
 
 ## Result
 
-As a result, prior authorization is now being cut from a manual, on hold call which can last up to an hour to now being automated and only taking a few minutes of data entry on the nurses end. 
-
+As a result, prior authorization is now being cut from a manual, on hold call which can last up to an hour to now being automated and only taking a few minutes of data entry on the nurses end. Its no secret that we can always use more help on the everyday battle of treating patients and saving lives, and the Prior Authorization AI Agent now enables more help on the floor and less help on hold!
